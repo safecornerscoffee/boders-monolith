@@ -4,3 +4,12 @@ jdk:
 cache:
   directories:
     - '$HOME/.m2/repository'
+
+services:
+  - docker
+
+before_script:
+  - docker-compose up -d
+
+after_script:
+  - docker-compose down

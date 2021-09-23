@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: borders
+    password: borders
+    url: jdbc:mariadb://localhost:3306/borders
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
