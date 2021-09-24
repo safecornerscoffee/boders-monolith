@@ -45,4 +45,12 @@ public class OrderItem {
     public void setOrder(Order order) {
         this.order = order;
     }
+
+    public int getTotalPrice() {
+        return orderPrice * count;
+    }
+
+    public void cancel() {
+        item.addStock(count);
+    }
 }

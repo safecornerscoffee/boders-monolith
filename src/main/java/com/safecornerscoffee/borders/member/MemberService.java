@@ -1,7 +1,6 @@
 package com.safecornerscoffee.borders.member;
 
-import com.safecornerscoffee.borders.member.Member;
-import com.safecornerscoffee.borders.member.MemberRepository;
+import com.safecornerscoffee.borders.member.exception.MemberDuplicatedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,31 +11,39 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class MemberService {
 
-    private final MemberRepository memberRepository;
+    private final MemberRepository repository;
 
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+    public MemberService(MemberRepository repository) {
+        this.repository = repository;
     }
 
     @Transactional
     public Member save(Member member) {
-        return memberRepository.save(member);
+        isDuplicateMember(member);
+        return repository.save(member);
+    }
+
+    private void isDuplicateMember(Member member) {
+        Optional<Member> findMember = repository.findByUsername(member.getUsername());
+        if (findMember.isPresent()) {
+            throw new MemberDuplicatedException(member.getUsername());
+        }
     }
 
     public Optional<Member> findById(Long id) {
-        return memberRepository.findById(id);
+        return repository.findById(id);
     }
 
     public List<Member> findAll() {
-        return memberRepository.findAll();
+        return repository.findAll();
     }
 
     public Optional<Member> findByUsername(String username) {
-        return memberRepository.findByUsername(username);
+        return repository.findByUsername(username);
     }
 
     @Transactional
     public void delete(Long id) {
-        memberRepository.delete(id);
+        repository.delete(id);
     }
 }

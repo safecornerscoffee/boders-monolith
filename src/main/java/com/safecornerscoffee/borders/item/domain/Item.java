@@ -1,6 +1,7 @@
 package com.safecornerscoffee.borders.item.domain;
 
-import com.safecornerscoffee.borders.catalogue.category.Category;
+import com.safecornerscoffee.borders.category.Category;
+import com.safecornerscoffee.borders.item.exception.ItemNotEnoughStockException;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -60,5 +61,17 @@ public class Item {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    public void removeStock(int quantity) {
+        int restStock = this.stockQuantity - quantity;
+        if (restStock < 0) {
+            throw new ItemNotEnoughStockException();
+        }
+        this.stockQuantity = restStock;
     }
 }

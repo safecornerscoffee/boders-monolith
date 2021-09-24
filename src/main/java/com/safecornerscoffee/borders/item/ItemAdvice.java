@@ -1,7 +1,7 @@
 package com.safecornerscoffee.borders.item;
 
 import com.safecornerscoffee.borders.item.exception.ItemNotFoundException;
-import com.safecornerscoffee.borders.item.exception.ItemOutOfStockException;
+import com.safecornerscoffee.borders.item.exception.ItemNotEnoughStockException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -14,7 +14,7 @@ public class ItemAdvice {
         return ResponseEntity.notFound().build();
     }
 
-    @ExceptionHandler(ItemOutOfStockException.class)
+    @ExceptionHandler(ItemNotEnoughStockException.class)
     public ResponseEntity<?> handleOutOfStockException(Exception e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }

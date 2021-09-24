@@ -33,8 +33,23 @@ public class Order {
 
     protected Order() {}
 
-    public void cancel() {
+    public static Order createOrder(Member member, Delivery delivery, List<OrderItem> orderItems) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        orderItems.forEach(order::addOrderItem);
+        order.setOrderDate(LocalDateTime.now());
+        order.setOrderStatus(OrderStatus.ORDER);
+        return order;
+    };
 
+    public void cancel() {
+        if (delivery.getStatus() == DeliveryStatus.COMPLETE) {
+            throw new RuntimeException();
+        }
+
+        this.setOrderStatus(OrderStatus.CANCEL);
+        orderItems.forEach(orderItems::cancel);
     }
 
     public void complete() {
@@ -44,6 +59,10 @@ public class Order {
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
+    }
+
+    public int getTotalPrice() {
+        return orderItems.stream().mapToInt(OrderItem::getTotalPrice).sum();
     }
 
     public Long getId() {
@@ -75,4 +94,11 @@ public class Order {
         this.delivery = delivery;
     }
 
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }
