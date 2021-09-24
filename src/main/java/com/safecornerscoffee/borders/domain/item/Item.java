@@ -1,12 +1,9 @@
 package com.safecornerscoffee.borders.domain.item;
 
 import com.safecornerscoffee.borders.domain.Category;
-import com.safecornerscoffee.borders.domain.OrderItem;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,4 +22,23 @@ public class Item {
     @ManyToMany(mappedBy = "items")
     private Set<Category> categories = new HashSet<>();
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
 }

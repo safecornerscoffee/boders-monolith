@@ -1,8 +1,8 @@
-package com.safecornerscoffee.borders.domain;
+package com.safecornerscoffee.borders.domain.order;
 
 
 
-import org.springframework.data.annotation.CreatedDate;
+import com.safecornerscoffee.borders.domain.Member;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

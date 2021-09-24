@@ -1,4 +1,4 @@
-package com.safecornerscoffee.borders.domain;
+package com.safecornerscoffee.borders.domain.order;
 
 import com.safecornerscoffee.borders.domain.item.Item;
 

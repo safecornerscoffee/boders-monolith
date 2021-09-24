@@ -1,4 +1,6 @@
-package com.safecornerscoffee.borders.domain;
+package com.safecornerscoffee.borders.domain.order;
+
+import com.safecornerscoffee.borders.domain.Address;
 
 import javax.persistence.*;
 

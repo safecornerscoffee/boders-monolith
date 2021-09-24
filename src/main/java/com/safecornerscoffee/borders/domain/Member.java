@@ -1,6 +1,7 @@
 package com.safecornerscoffee.borders.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.safecornerscoffee.borders.domain.order.Order;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String username;
 
     @JsonIgnore
