@@ -1,4 +1,4 @@
-package com.safecornerscoffee.borders.domain;
+package com.safecornerscoffee.borders.data;
 
 import javax.persistence.Embeddable;
 

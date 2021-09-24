@@ -1,8 +1,8 @@
-package com.safecornerscoffee.borders.domain.order;
+package com.safecornerscoffee.borders.order.domain;
 
 
 
-import com.safecornerscoffee.borders.domain.Member;
+import com.safecornerscoffee.borders.member.Member;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

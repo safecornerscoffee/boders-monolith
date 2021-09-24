@@ -1,6 +1,6 @@
-package com.safecornerscoffee.borders.domain;
+package com.safecornerscoffee.borders.catalogue.category;
 
-import com.safecornerscoffee.borders.domain.item.Item;
+import com.safecornerscoffee.borders.item.domain.Item;
 
 import javax.persistence.*;
 import java.util.HashSet;

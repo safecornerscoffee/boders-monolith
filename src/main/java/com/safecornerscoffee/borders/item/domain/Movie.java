@@ -1,4 +1,4 @@
-package com.safecornerscoffee.borders.domain.item;
+package com.safecornerscoffee.borders.item.domain;
 
 import javax.persistence.Entity;
 

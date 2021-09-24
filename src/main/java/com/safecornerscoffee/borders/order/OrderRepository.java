@@ -1,7 +1,8 @@
-package com.safecornerscoffee.borders.repository;
+package com.safecornerscoffee.borders.order;
 
-import com.safecornerscoffee.borders.domain.Member;
-import com.safecornerscoffee.borders.domain.order.Order;
+import com.safecornerscoffee.borders.member.Member;
+import com.safecornerscoffee.borders.order.domain.Order;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

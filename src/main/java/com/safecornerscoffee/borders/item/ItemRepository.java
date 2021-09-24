@@ -1,7 +1,6 @@
-package com.safecornerscoffee.borders.repository;
+package com.safecornerscoffee.borders.item;
 
-import com.safecornerscoffee.borders.domain.Category;
-import com.safecornerscoffee.borders.domain.item.Item;
+import com.safecornerscoffee.borders.item.domain.Item;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -41,7 +40,6 @@ public class ItemRepository {
     public List<Item> findAll() {
         return em.createQuery("select i from Item i", Item.class).getResultList();
     }
-
 
     public void delete(Item item) {
         em.remove(item);

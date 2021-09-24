@@ -1,7 +1,8 @@
-package com.safecornerscoffee.borders.domain;
+package com.safecornerscoffee.borders.member;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.safecornerscoffee.borders.domain.order.Order;
+import com.safecornerscoffee.borders.data.Address;
+import com.safecornerscoffee.borders.order.domain.Order;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -52,6 +53,18 @@ public class Member {
 
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void changeUsername(String username) {

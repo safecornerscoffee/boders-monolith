@@ -1,6 +1,6 @@
-package com.safecornerscoffee.borders.domain.item;
+package com.safecornerscoffee.borders.item.domain;
 
-import com.safecornerscoffee.borders.domain.Category;
+import com.safecornerscoffee.borders.catalogue.category.Category;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -40,5 +40,25 @@ public class Item {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }

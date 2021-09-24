@@ -1,11 +1,10 @@
-package com.safecornerscoffee.borders.repository;
+package com.safecornerscoffee.borders.member;
 
-import com.safecornerscoffee.borders.domain.Member;
+import com.safecornerscoffee.borders.member.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +41,8 @@ public class MemberRepository {
         return Optional.of(member);
     }
 
-    public void delete(Member member) {
+    public void delete(Long id) {
+        Member member = em.find(Member.class, id);
         em.remove(member);
     }
 }
