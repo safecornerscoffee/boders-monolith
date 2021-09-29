@@ -1,25 +1,36 @@
 package com.safecornerscoffee.borders.order;
 
+import com.safecornerscoffee.borders.member.Member;
+import com.safecornerscoffee.borders.order.domain.Order;
 import com.safecornerscoffee.borders.order.domain.OrderStatus;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
+
+import javax.persistence.criteria.*;
 
 public class OrderSpecification {
 
-    private String memberName;
-    private OrderStatus orderStatus;
+    public static Specification<Order> memberNameLike(final String memberName) {
+        return new Specification<Order>() {
+            @Override
+            public Predicate toPredicate(Root<Order> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                if (!StringUtils.hasText(memberName)) return null;
 
-    public String getMemberName() {
-        return memberName;
+                Join<Order, Member> m = root.join("member", JoinType.INNER);
+                return criteriaBuilder.equal(m.<String>get("name"), "%" + memberName + "%");
+            }
+        };
     }
 
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
+    public static Specification<Order> orderStatusEq(final OrderStatus orderStatus) {
+        return new Specification<Order>() {
+            @Override
+            public Predicate toPredicate(Root<Order> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
+                if ( orderStatus == null) return null;
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+                return criteriaBuilder.equal(root.get("orderStatus"), orderStatus);
+            }
+        };
     }
 }

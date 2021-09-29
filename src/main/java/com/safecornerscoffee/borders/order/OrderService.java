@@ -10,12 +10,16 @@ import com.safecornerscoffee.borders.order.domain.Delivery;
 import com.safecornerscoffee.borders.order.domain.Order;
 import com.safecornerscoffee.borders.order.domain.OrderItem;
 import com.safecornerscoffee.borders.order.exception.OrderNotFoundException;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.jpa.domain.Specification.*;
+import static com.safecornerscoffee.borders.order.OrderSpecification.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -57,8 +61,9 @@ public class OrderService {
         order.cancel();
     }
 
-    public List<Order> findAll(OrderSpecification orderSpecification) {
-        return orderRepository.findAll(orderSpecification);
+    public List<Order> findAll(OrderSearch orderSearch) {
+
+        return orderRepository.findAll(orderSearch.toSpecification());
     }
 
     @Transactional

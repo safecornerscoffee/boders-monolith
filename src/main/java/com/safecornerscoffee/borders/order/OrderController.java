@@ -24,11 +24,11 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public CollectionModel<EntityModel<Order>> all(@RequestBody(required = false) OrderSpecification orderSpecification) {
-        List<Order> orders = service.findAll(orderSpecification);
+    public CollectionModel<EntityModel<Order>> all(@RequestBody OrderSearch orderSearch) {
+        List<Order> orders = service.findAll(orderSearch);
         List<EntityModel<Order>> collect = orders.stream().map(assembler::toModel).collect(Collectors.toList());
         return CollectionModel.of(collect,
-                linkTo(methodOn(OrderController.class).all(null)).withSelfRel());
+                linkTo(methodOn(OrderController.class).all(orderSearch)).withSelfRel());
     }
 
     @GetMapping("/orders/{id}")
@@ -42,7 +42,6 @@ public class OrderController {
         Order order = service.order(memberId, itemId, count);
         return assembler.toModel(order);
     };
-
 
     public EntityModel<Order> cancel() {
         return null;
