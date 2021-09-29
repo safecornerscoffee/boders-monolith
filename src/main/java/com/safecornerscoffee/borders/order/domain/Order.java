@@ -41,15 +41,15 @@ public class Order {
         order.setOrderDate(LocalDateTime.now());
         order.setOrderStatus(OrderStatus.ORDER);
         return order;
-    };
+    }
 
     public void cancel() {
         if (delivery.getStatus() == DeliveryStatus.COMPLETE) {
-            throw new RuntimeException();
+            throw new RuntimeException("Could not cancel order at the " + getDelivery() + "delivery stage");
         }
 
         this.setOrderStatus(OrderStatus.CANCEL);
-        orderItems.forEach(orderItems::cancel);
+        orderItems.forEach(OrderItem::cancel);
     }
 
     public void complete() {

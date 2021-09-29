@@ -22,6 +22,16 @@ public class OrderItem {
 
     protected OrderItem() {}
 
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+
+        item.removeStock(count);
+        return orderItem;
+    }
+
     public Long getId() {
         return id;
     }
@@ -44,6 +54,18 @@ public class OrderItem {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public void setOrderPrice(int orderPrice) {
+        this.orderPrice = orderPrice;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public int getTotalPrice() {

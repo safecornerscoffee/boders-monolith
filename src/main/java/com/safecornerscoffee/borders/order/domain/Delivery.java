@@ -22,6 +22,10 @@ public class Delivery {
 
     protected Delivery() {}
 
+    public Delivery(Address address) {
+        this.address = address;
+    }
+
     public Long getId() {
         return id;
     }
