@@ -32,7 +32,7 @@ public class OrderService {
     }
 
     @Transactional
-    public Long order (Long memberId, Long itemId, int count) {
+    public Order order (Long memberId, Long itemId, int count) {
 
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new MemberNotFoundException(memberId));
         Item item = itemService.findById(itemId).orElseThrow(() -> new ItemNotFoundException(itemId));
@@ -46,7 +46,7 @@ public class OrderService {
         Order order = Order.createOrder(member, delivery, orderItems);
 
         orderRepository.save(order);
-        return order.getId();
+        return order;
     }
 
     @Transactional
@@ -57,7 +57,7 @@ public class OrderService {
         order.cancel();
     }
 
-    public List<Order> findOrders(OrderSpecification orderSpecification) {
+    public List<Order> findAll(OrderSpecification orderSpecification) {
         return orderRepository.findAll(orderSpecification);
     }
 

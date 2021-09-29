@@ -24,11 +24,11 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public CollectionModel<EntityModel<Order>> all() {
-        List<Order> orders = service.findAll();
+    public CollectionModel<EntityModel<Order>> all(@RequestBody(required = false) OrderSpecification orderSpecification) {
+        List<Order> orders = service.findAll(orderSpecification);
         List<EntityModel<Order>> collect = orders.stream().map(assembler::toModel).collect(Collectors.toList());
         return CollectionModel.of(collect,
-                linkTo(methodOn(OrderController.class).all()).withSelfRel());
+                linkTo(methodOn(OrderController.class).all(null)).withSelfRel());
     }
 
     @GetMapping("/orders/{id}")
@@ -38,8 +38,9 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
-    public EntityModel<Order> place(@RequestBody Order order) {
-        return null;
+    public EntityModel<Order> place(@RequestParam Long memberId, @RequestParam Long itemId, @RequestParam int count) {
+        Order order = service.order(memberId, itemId, count);
+        return assembler.toModel(order);
     };
 
 
