@@ -44,6 +44,6 @@ public class MemberService {
 
     @Transactional
     public void delete(Long id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 }
